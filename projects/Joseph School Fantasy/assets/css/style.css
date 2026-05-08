@@ -1,0 +1,800 @@
+#safe-zone,
+#finishBullet,
+.timer,
+.result,
+#rewardBox {
+  display: none;
+}
+
+:root {
+  --heart1-size: 8vmin;
+  --edge: 8vmin;
+}
+
+.game-wrap {
+  position: relative;
+  overflow: hidden;
+  width: 672px;
+  height: 704px;
+}
+
+/* Enter */
+
+#start-screen {
+  position: absolute;
+  inset: 0;
+  background-image: url("../media/floor.png");
+  background-repeat: repeat;
+  background-size: 32px 32px;
+  color: white;
+  z-index: 2000;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  font-family: "Press Start 2P", monospace;
+  text-align: center;
+}
+
+#heart1 {
+  position: absolute;
+  top: 60px;
+  left: 60px;
+  background-image: url("../media/heart.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 60px;
+  height: 60px;
+
+  animation: runAround 8s linear infinite;
+}
+
+#heart1 {
+  position: absolute;
+  width: var(--heart1-size);
+  height: var(--heart1-size);
+
+  background-image: url("../media/heart-3.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  animation: runAround 8s linear infinite;
+}
+
+@keyframes runAround {
+  0% {
+    top: var(--edge);
+    left: var(--edge);
+    background-image: url("../media/heart-3.png");
+  }
+
+  24.9% {
+    top: var(--edge);
+    left: calc(100% - var(--heart1-size) - var(--edge));
+    background-image: url("../media/heart-3.png");
+  }
+
+  25% {
+    top: var(--edge);
+    left: calc(100% - var(--heart1-size) - var(--edge));
+    background-image: url("../media/heart-4.png");
+  }
+
+  49.9% {
+    top: calc(100% - var(--heart1-size) - var(--edge));
+    left: calc(100% - var(--heart1-size) - var(--edge));
+    background-image: url("../media/heart-4.png");
+  }
+
+  50% {
+    top: calc(100% - var(--heart1-size) - var(--edge));
+    left: calc(100% - var(--heart1-size) - var(--edge));
+    background-image: url("../media/heart.png");
+  }
+
+  74.9% {
+    top: calc(100% - var(--heart1-size) - var(--edge));
+    left: var(--edge);
+    background-image: url("../media/heart.png");
+  }
+
+  75% {
+    top: calc(100% - var(--heart1-size) - var(--edge));
+    left: var(--edge);
+    background-image: url("../media/heart-2.png");
+  }
+
+  99.9% {
+    top: var(--edge);
+    left: var(--edge);
+    background-image: url("../media/heart-2.png");
+  }
+
+  100% {
+    top: var(--edge);
+    left: var(--edge);
+    background-image: url("../media/heart-3.png");
+  }
+}
+
+#start-screen h1 {
+  font-size: 32px;
+  margin-bottom: 32px;
+}
+
+#start-screen p {
+  font-size: 10px;
+  line-height: 1.8;
+  margin: 4px 0;
+}
+
+#map-ui {
+  position: absolute;
+  top: 32px;
+  left: 32px;
+  width: 100px;
+  z-index: 150;
+  text-align: center;
+  font-family: "Press Start 2P", monospace;
+  pointer-events: none;
+}
+
+#mini-map {
+  width: 96px;
+  height: 96px;
+  border: 2px solid black;
+  display: block;
+  image-rendering: pixelated;
+}
+
+#map-label {
+  margin-top: 6px;
+  color: black;
+  /* background: black;
+  border: 2px solid white; */
+  /* padding: 4px 2px; */
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+/* Game */
+
+#debugPos {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: white;
+  font-family: "Silkscreen";
+  font-size: 14px;
+  z-index: 100;
+}
+
+.screen {
+  display: none;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 672px;
+  height: 704px;
+}
+
+.screen.active {
+  display: block;
+}
+
+#screen1 {
+  background-image: url("../media/floor.png");
+  background-repeat: repeat;
+  background-size: 32px 32px;
+}
+
+@font-face {
+  font-family: "Press Start 2P";
+  src: url("../fonts/PressStart2P-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Silkscreen";
+  src: url("../fonts/Silkscreen-Regular.ttf") format("truetype");
+}
+
+body {
+  color: var(--green);
+  font-family: "Silkscreen";
+  font-size: 15px;
+  margin: 0;
+  background-color: black;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.choice {
+  cursor: pointer;
+}
+
+.choice:hover {
+  background-color: var(--green);
+  color: black;
+}
+
+.heart {
+  position: absolute;
+  left: 160px;
+  top: 320px;
+  width: 32px;
+  height: auto;
+  z-index: 60;
+}
+
+.square {
+  width: 48px;
+  height: 48px;
+  background-image: url("../media/desk.png");
+  position: absolute;
+}
+
+#desk-1 {
+  top: 128px;
+  left: 128px;
+  z-index: 20;
+}
+
+#desk-2 {
+  top: 512px;
+  left: 128px;
+  z-index: 20;
+}
+
+#grade-1 {
+  width: 32px;
+  height: 16px;
+  background-image: url("../media/1.1.png");
+  background-size: 32px 16px;
+  position: absolute;
+  left: 320px;
+  top: 176px;
+  z-index: 61;
+}
+
+.talkbox {
+  width: 600px;
+  height: 200px;
+  border: solid 1px black;
+  border-radius: 10%;
+  position: absolute;
+  left: 300px;
+  top: 500px;
+  opacity: 0;
+}
+
+.wall-10 {
+  width: 320px;
+  height: 704px;
+  background-image: url("../media/wall-10.png");
+  background-repeat: repeat;
+  background-size: 320px 32px;
+  position: absolute;
+  top: 0px;
+  left: 352px;
+}
+
+#left-wall {
+  width: 96px;
+  height: 704px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  background-image: url("../media/brick.png");
+  background-repeat: repeat;
+  background-size: 16px 32px;
+}
+
+#light-wall {
+  width: 64px;
+  height: 100%;
+  position: absolute;
+  left: 32px;
+  top: 0px;
+  background-color: rgb(255, 255, 176);
+  opacity: 30%;
+  z-index: 10;
+}
+
+#classroom-1 {
+  width: 256px;
+  height: 256px;
+  background-image: url("../media/floor.png");
+  background-repeat: repeat;
+  background-size: 32px 32px;
+  position: absolute;
+  top: 32px;
+  left: 32px;
+}
+
+#classroom-2 {
+  width: 256px;
+  height: 256px;
+  background-image: url("../media/floor.png");
+  background-repeat: repeat;
+  background-size: 32px 32px;
+  position: absolute;
+  top: 416px;
+  left: 32px;
+}
+
+.shadow {
+  width: 272px;
+  height: 304px;
+  position: absolute;
+  background-color: rgb(109, 57, 1);
+  opacity: 60%;
+  z-index: 30;
+}
+
+#shadow-1 {
+  top: -16px;
+  left: 368px;
+  background-color: rgb(255, 255, 176);
+  opacity: 30%;
+  z-index: 90;
+}
+
+#shadow-2 {
+  top: 368px;
+  left: 368px;
+}
+
+.gate {
+  width: 64px;
+  height: 64px;
+  position: absolute;
+  background-image: url("../media/floor.png");
+  background-repeat: repeat;
+  background-size: 32px 32px;
+  z-index: 40;
+}
+
+#gate-1 {
+  top: 192px;
+  left: 0px;
+}
+
+#gate-2 {
+  top: 448px;
+  left: 0px;
+}
+
+/* Change Screen */
+
+#screen2 {
+  background-color: rgb(233, 227, 172);
+  z-index: 20;
+}
+
+.transition-mark {
+  background-image: url("../media/cloud.png");
+  background-repeat: repeat;
+  background-size: 80px 64px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 672px;
+  height: 704px;
+  transform: translateX(100%);
+  z-index: 90;
+  pointer-events: none;
+}
+
+.transition-mark.play {
+  animation: markInOut 1s ease-in-out forwards;
+}
+
+@keyframes markInOut {
+  0% {
+    transform: translateX(100%);
+  }
+  45% {
+    transform: translateX(0);
+  }
+  55% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+#dialogBox {
+  position: absolute;
+  left: 50%;
+  bottom: 40px;
+  transform: translateX(-50%);
+
+  width: 528px;
+  height: 128px;
+  /* padding: 20px; */
+
+  background-image: url("../media/dialog-warrior.gif");
+  background-size: 528px 128px;
+
+  display: none;
+
+  z-index: 500;
+}
+
+#dialogText {
+  position: absolute;
+  left: 48px;
+  top: 48px;
+  /* margin: 0; */
+  color: white;
+  font-family: "Press Start 2P", monospace;
+  font-size: 9px;
+  line-height: 1.6;
+}
+
+#deskedge {
+  width: 100%;
+  height: 96px;
+  background-image: url("../media/cloud01.png");
+  background-repeat: repeat;
+  background-size: auto 96px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 60;
+}
+
+.rubber {
+  width: 64px;
+  height: auto;
+  position: absolute;
+  top: 224px;
+  left: 304px;
+  z-index: 10;
+}
+
+#screen3 {
+  position: relative;
+  background-image: url("../media/grass-n.png");
+  background-repeat: repeat;
+  background-size: 32px 32px;
+  z-index: 20;
+}
+
+#grass {
+  width: 100%;
+  height: 304px;
+  background-image: url("../media/grass-h.png");
+  background-repeat: repeat;
+  background-size: 32px 32px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+/* #safe-zone {
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  z-index: 50;
+} */
+
+#safe-zone-3 {
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  z-index: 50;
+  background-image: url("../media/grass-h.png");
+  background-repeat: repeat;
+  background-size: 32px 32px;
+}
+
+#safe-zone-4 {
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  z-index: 50;
+  background-image: url("../media/safezone-floor.png");
+  background-repeat: repeat;
+  background-size: 32px 32px;
+  z-index: 50;
+}
+
+.timer {
+  position: absolute;
+  left: 316px;
+  top: 100px;
+  color: white;
+  font-size: 48px;
+  z-index: 400;
+}
+
+.result {
+  position: absolute;
+  left: 220px;
+  top: 150px;
+  color: white;
+  font-size: 48px;
+  z-index: 400;
+}
+
+#finishBullet {
+  position: absolute;
+  width: 32px;
+  height: 400px;
+  left: 0;
+  top: 304px;
+  opacity: 0;
+  z-index: 30;
+}
+
+#finishBullet.finishbullet-screen3 {
+  background-image: url("../media/sword02.png");
+  background-repeat: repeat-y;
+  background-size: 80px 32px;
+}
+
+#finishBullet.finishbullet-screen4 {
+  width: 100%;
+  height: 400px;
+  background-image: url("../media/explosion.gif");
+  background-repeat: repeat;
+  background-size: 64px 64px;
+  z-index: 35;
+}
+
+#finishBullet.play-screen3 {
+  opacity: 1;
+  display: block;
+  animation: finishBulletScreen3 1s forwards;
+}
+
+#finishBullet.play-screen4 {
+  opacity: 1;
+  display: block;
+  animation: finishBulletScreen4 1s forwards;
+}
+
+@keyframes finishBulletScreen3 {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(640px);
+  }
+}
+
+@keyframes finishBulletScreen4 {
+  0% {
+    opacity: 0;
+  }
+  1% {
+    opacity: 1;
+  }
+  99% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+#rewardBox {
+  position: absolute;
+  width: 96px;
+  height: 96px;
+  background-image: url(../media/helmet.png);
+  background-size: 96px 96px;
+  left: 304px;
+  top: 368px;
+
+  display: none;
+  z-index: 40;
+}
+
+#boss {
+  position: absolute;
+  width: 64px;
+  height: 48px;
+  left: 320px;
+  top: 0px;
+  background-image: url("../media/villian01.gif");
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: none;
+  z-index: 40;
+}
+
+.boss-dialog {
+  position: absolute;
+  left: 50%;
+  bottom: 40px;
+  transform: translateX(-50%);
+  width: 528px;
+  min-height: 129px;
+  /* padding: 16px 20px; */
+  box-sizing: border-box;
+
+  display: none;
+
+  background-image: url("../media/dialog-boss.gif");
+  background-size: 528px 129px;
+
+  /* position: absolute;
+  left: 48px;
+  top: 48px; */
+  /* margin: 48px;
+  color: white;
+  font-family: "Press Start 2P", monospace;
+  font-size: 9px;
+  line-height: 1; */
+  z-index: 999;
+}
+
+#bossDialogText {
+  position: absolute;
+  left: 48px;
+  top: 48px;
+  margin: 0;
+  width: 432px;
+  color: white;
+  font-family: "Press Start 2P", monospace;
+  font-size: 9px;
+  line-height: 1;
+}
+#screen4 {
+  background-image: url("../media/floor.png");
+  background-repeat: repeat;
+  background-size: 32px 32px;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 30;
+}
+
+#screen4-bg {
+  position: absolute;
+  z-index: 1;
+}
+
+#screen5 {
+  background-image: url("../media/floor.png");
+  background-repeat: repeat;
+  background-size: 32px 32px;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 30;
+  overflow: hidden;
+}
+
+#battle-ui {
+  position: absolute;
+  inset: 0;
+  color: white;
+  font-family: "Press Start 2P", monospace;
+  z-index: 20;
+}
+
+.battle-hp {
+  position: absolute;
+  width: 220px;
+  padding: 12px;
+  border: 3px solid white;
+  background: black;
+}
+
+.enemy-hp {
+  top: 40px;
+  left: 40px;
+}
+
+.player-hp {
+  top: 420px;
+  right: 40px;
+}
+
+.battle-name {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.hp-bar {
+  width: 100%;
+  height: 16px;
+  border: 2px solid white;
+  background: #333;
+  position: relative;
+}
+
+.hp-fill {
+  height: 100%;
+  width: 100%;
+  background: limegreen;
+  transition: width 0.25s ease;
+}
+
+.hp-text {
+  margin-top: 8px;
+  font-size: 10px;
+}
+
+#battle-message {
+  position: absolute;
+  left: 40px;
+  bottom: 120px;
+  width: 560px;
+  min-height: 40px;
+  padding: 14px;
+  border: 3px solid white;
+  background: black;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+#battle-menu {
+  position: absolute;
+  left: 40px;
+  bottom: 40px;
+  width: 560px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.skill-option {
+  padding: 18px 14px;
+  border: 3px solid white;
+  background: black;
+  font-size: 12px;
+}
+
+.skill-option.selected {
+  background: white;
+  color: black;
+}
+
+#battle-result {
+  position: absolute;
+  inset: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  font-size: 28px;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 20;
+}
+
+#battle-result span {
+  display: block;
+  margin-top: 24px;
+  font-size: 10px;
+}
+
+#bob {
+  width: 160px;
+  height: 304px;
+  background-image: url(../media/bob.png);
+  background-size: 160px 304px;
+  position: absolute;
+  top: 48px;
+  left: 352px;
+  z-index: 10;
+}
+
+#you {
+  width: 144px;
+  height: 304px;
+  background-image: url("../media/you.png");
+  background-size: 144px 304px;
+  position: absolute;
+  top: 288px;
+  left: 96px;
+  z-index: 10;
+}

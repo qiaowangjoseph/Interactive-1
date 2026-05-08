@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>school fantasy</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+
+  <body>
+    <div class="game-wrap">
+      <div id="start-screen">
+        <div id="heart1"></div>
+
+        <h1>SCHOOL FANTASY</h1>
+        <p>Use WASD / Arrow Keys to move</p>
+        <p>Press SPACE to interact</p>
+        <p class="start-text">PRESS SPACE TO START</p>
+      </div>
+
+      <div id="debugPos">x:0, y:0</div>
+
+      <!-- 地图
+      <h1>Map Toggle</h1>
+      <p>click a button to move. Click map button or Press M to toggle map</p>
+
+      <button id="map-button">toggle map</button>
+      <p id="map-status">Map Visible</p>
+
+      <h2 id="room-name"></h2> -->
+
+      <div id="map-ui">
+        <img id="mini-map" src="assets/media/map-1.jpg" alt="map" />
+        <div id="map-label">Lobby</div>
+      </div>
+
+      <div id="screen1" class="screen active">
+        <div class="wall-10">
+          <div id="classroom-1"></div>
+          <div class="square" id="desk-1"></div>
+          <div id="classroom-2"></div>
+          <div class="square" id="desk-2"></div>
+          <div class="gate" id="gate-1"></div>
+          <div class="gate" id="gate-2"></div>
+        </div>
+
+        <div id="light-wall"></div>
+
+        <div id="grade-1"></div>
+
+        <div id="left-wall"></div>
+
+        <div class="shadow" id="shadow-1"></div>
+        <div class="shadow" id="shadow-2"></div>
+      </div>
+
+      <div id="boss"></div>
+
+      <!-- Control -->
+      <img class="heart" src="assets/media/c-f.png" alt="heart" />
+
+      <!--Scene-->
+
+      <div id="screen2" class="screen">
+        <div class="room2"></div>
+
+        <div id="deskedge"></div>
+
+        <img
+          class="rubber"
+          id="normal-rubber"
+          src="assets/media/rubber.png"
+          alt="rubber"
+        />
+      </div>
+
+      <div id="dialogBox" style="display: none">
+        <p id="dialogText"></p>
+      </div>
+
+      <div id="bossDialogBox" class="boss-dialog">
+        <div id="bossDialogText"></div>
+      </div>
+
+      <div id="screen3" class="screen">
+        <div id="safe-zone-3"></div>
+        <img
+          class="rubber"
+          id="warrior-rubber"
+          src="assets/media/warrior.gif"
+          alt="warrior"
+        />
+
+        <div id="grass"></div>
+      </div>
+
+      <!-- <div id="safe-zone"></div> -->
+
+      <div id="finishBullet"></div>
+
+      <div class="timer"></div>
+      <div class="result"></div>
+
+      <div id="rewardBox"></div>
+
+      <div id="screen4" class="screen">
+        <div id="safe-zone-4"></div>
+        <div id="screen4-bg"></div>
+      </div>
+
+      <div id="screen5" class="screen">
+        <div id="bob"></div>
+        <div id="you"></div>
+
+        <div id="battle-ui">
+          <div class="battle-hp enemy-hp">
+            <div class="battle-name">BOB</div>
+            <div class="hp-bar">
+              <div id="enemyHpFill" class="hp-fill"></div>
+            </div>
+            <div id="enemyHpText" class="hp-text">100 / 100</div>
+          </div>
+
+          <div class="battle-hp player-hp">
+            <div class="battle-name">YOU</div>
+            <div class="hp-bar">
+              <div id="playerHpFill" class="hp-fill"></div>
+            </div>
+            <div id="playerHpText" class="hp-text">100 / 100</div>
+          </div>
+
+          <div id="battle-message">Choose your skill.</div>
+
+          <div id="battle-menu">
+            <div class="skill-option selected" data-index="0">PUNCH</div>
+            <div class="skill-option" data-index="1">KICK</div>
+          </div>
+
+          <div id="battle-result"></div>
+        </div>
+      </div>
+
+      <div class="transition-mark"></div>
+    </div>
+
+    <script src="assets/js/script.js"></script>
+  </body>
+</html>
